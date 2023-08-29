@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: gray;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        #calculator {
+            width: 320px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        #display {
+            grid-column: span 4;
+            padding: 10px;
+            font-size: 18px;
+            text-align: right;
+            border: none;
+            border-radius: 5px;
+            background-color: #9fdaa7;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #d2d2d2;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        button:hover {
+            background-color: #333;
+            color: #fff;
+        }
+        .scientific {
+            background-color: #f0ad4e;
+            color: #fff;
+        }
+        .scientific:hover {
+            background-color: #d9534f;
+        }
+        .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        a {
+            text-decoration: none;
+            color: #555;
+            display: block;
+            margin-top: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="calculator">
+        <input type="text" id="display" disabled>
+        <button onclick="appendToDisplay('7')">7</button>
+        <button onclick="appendToDisplay('8')">8</button>
+        <button onclick="appendToDisplay('9')">9</button>
+        <button onclick="appendToDisplay('/')">/</button>
+        <button onclick="appendToDisplay('4')">4</button>
+        <button onclick="appendToDisplay('5')">5</button>
+        <button onclick="appendToDisplay('6')">6</button>
+        <button onclick="appendToDisplay('*')">*</button>
+        <button onclick="appendToDisplay('1')">1</button>
+        <button onclick="appendToDisplay('2')">2</button>
+        <button onclick="appendToDisplay('3')">3</button>
+        <button onclick="appendToDisplay('-')">-</button>
+        <button onclick="appendToDisplay('0')">0</button>
+        <button onclick="calculate()">=</button>
+        <button onclick="clearDisplay()">C</button>
+        <button onclick="appendToDisplay('+')">+</button>
+        <button onclick="calculateSquareRoot()">√</button>
+        <button class="scientific" onclick="calculateTrig('sin')">sin</button>
+        <button class="scientific" onclick="calculateTrig('cos')">cos</button>
+        <button class="scientific" onclick="calculateTrig('tan')">tan</button> <br>
+    </div>
+    <script>
+        let display = document.getElementById("display");
+
+        function appendToDisplay(value) {
+            display.value += value;
+        }
+
+        function calculate() {
+            try {
+                display.value = eval(display.value);
+            } catch (error) {
+                display.value = "Error";
+            }
+        }
+
+        function clearDisplay() {
+            display.value = "";
+        }
+
+        function calculateSquareRoot() {
+            try {
+                display.value = Math.sqrt(eval(display.value));
+            } catch (error) {
+                display.value = "Error";
+            }
+        }
+
+        function calculateTrig(trigFunction) {
+            try {
+                const angleInDegrees = eval(display.value);
+                const angleInRadians = (angleInDegrees * Math.PI) / 180;
+                switch (trigFunction) {
+                    case 'sin':
+                        display.value = Math.sin(angleInRadians);
+                        break;
+                    case 'cos':
+                        display.value = Math.cos(angleInRadians);
+                        break;
+                    case 'tan':
+                        display.value = Math.tan(angleInRadians);
+                        break;
+                }
+            } catch (error) {
+                display.value = "Error";
+            }
+        }
+    </script>
+</body>
+</html>

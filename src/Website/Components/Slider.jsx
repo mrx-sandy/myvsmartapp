@@ -1,39 +1,32 @@
-import React, { useEffect, useState } from 'react'; // Remove the extra import state
-import { Carousel } from 'react-bootstrap';
+import React from 'react'
+import SimpleImageSlider from 'react-simple-image-slider';
 
 const Slider = () => {
-
-  const [Slider,SetSlider]=useState([]);
-  const GetSlider = () => {
-    fetch('https://vsmart.ajspire.com/api/banners')
-      .then(response => response.json())
-      .then(data => {
-        SetSlider(data.banners);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  };
-  
-useEffect(()=>
-{GetSlider();},[]);
+    const sliderImages = [
+        {
+          url:
+            "https://vsmart.ajspire.com/uploads/slider/1671082475.jpg",
+        },
+        {
+          url:
+    "https://vsmart.ajspire.com/uploads/slider/1667996845.jpg"
+        },
+    
+          
+       
+      ];
   return (
-    <div  className="Slider">
-<Carousel>
-  {
-    Slider.map((slider)=>
-(
-  <Carousel.Item>
-<img src={slider.slider_image} alt="girl in the jacket" width="1730" height="700" />
-  </Carousel.Item>
-)
+    <div><div id="slides-shop" class="cover-slides">
+    <ul class="slides-container ">
+        <li class="text-center">
+      <SimpleImageSlider  width={1700} height={700} images={sliderImages} showNavs={true} />
+           
+        </li>
+       
+      
+    </ul>
 
-    )
-  }
-</Carousel>
-
-
-    </div>
+</div></div>
   )
 }
 

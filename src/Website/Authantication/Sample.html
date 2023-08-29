@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+
+    .calculator {
+      background-color: #fff;
+      border-radius: 10px;
+      border: 15px black;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+    }
+
+    #display {
+      font-size: 24px;
+      width: 100%;
+      padding: 10px,10px;
+      margin-bottom: 15px;
+      border: none;
+      border-bottom: 2px solid #ddd;
+      outline: none;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 10px;
+      color: green;
+    }
+
+    .button {
+      background-color: #f0f0f0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 15px;
+      font-size: 20px;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .button.operator {
+      background-color: #c5a36c;
+      color: #fff;
+    }
+
+    .button:hover {
+      background-color: #0b0808;
+      transform: scale(1.05);
+    }
+  </style>
+  <title>Scientific Calculator</title>
+</head>
+<body>
+  <div class="calculator" style="background-color: gray;">
+    <input type="text" id="display" stytle="background-color:green" >
+    <div class="buttons">
+      <div class="button" onclick="addToDisplay('7')">7</div>
+      <div class="button" onclick="addToDisplay('8')">8</div>
+      <div class="button" onclick="addToDisplay('9')">9</div>
+      <div class="button operator" onclick="addToDisplay('/')">/</div>
+      <div class="button" onclick="addToDisplay('4')">4</div>
+      <div class="button" onclick="addToDisplay('5')">5</div>
+      <div class="button" onclick="addToDisplay('6')">6</div>
+      <div class="button operator" onclick="addToDisplay('*')">*</div>
+      <div class="button" onclick="addToDisplay('1')">1</div>
+      <div class="button" onclick="addToDisplay('2')">2</div>
+      <div class="button" onclick="addToDisplay('3')">3</div>
+      <div class="button operator" onclick="addToDisplay('-')">-</div>
+      <div class="button" onclick="addToDisplay('0')">0</div>
+      <div class="button" onclick="addToDisplay('.')">.</div>
+      <div class="button operator" onclick="calculate()"style="background-color:green">=</div>
+      <div class="button operator" onclick="addToDisplay('+')" style="height:fit-content">+</div>
+      <div class="button operator" onclick="clearDisplay()" style="background-color: red;">C</div>
+      <h6>Designed By @</h6> <a href="https://www.linkedin.com/in/poonam-gore-2b9945253"><h5>Poonam Gore</h5></a> 
+    </div>
+  </div>
+  <script>
+    const display = document.getElementById("display");
+
+    function addToDisplay(value) {
+      display.value += value;
+    }
+
+    function clearDisplay() {
+      display.value = "";
+    }
+
+    function calculate() {
+      try {
+        display.value = eval(display.value);
+      } catch (error) {
+        display.value = "Error";
+      }
+    }
+  </script>
+</body>
+</html>
